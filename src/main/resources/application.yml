@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: canteen-service
   data:
     mongodb:
       username: monjoy
@@ -7,3 +9,11 @@ spring:
       port: 8094
       database: canteen-menu
       authentication-database: admin
+
+server:
+  port: 8084
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
