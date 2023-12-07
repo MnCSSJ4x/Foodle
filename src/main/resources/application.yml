@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      username: monjoy
+      password: monjoy
+      host: localhost
+      port: 8094
+      database: service-request
+      authentication-database: admin
