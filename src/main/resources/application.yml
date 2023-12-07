@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: user-service
   data:
     mongodb:
       username: monjoy
@@ -7,3 +9,10 @@ spring:
       port: 8094
       database: users
       authentication-database: admin
+
+server:
+  port: 8086
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
