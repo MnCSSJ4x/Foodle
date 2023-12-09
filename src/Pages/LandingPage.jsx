@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Flex,
   Heading,
@@ -17,13 +18,26 @@ import {
   InputRightElement,
 } from '@chakra-ui/react';
 import { FaUserAlt, FaLock } from 'react-icons/fa';
+import axios from 'axios';
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 const LandingPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleShowClick = () => setShowPassword(!showPassword);
+  const router = useNavigate();
+  
+  const register = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.get('http://localhost:9191/api/users');
+      console.log(response);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+    router("/home");
+    window.location.reload();
+  };
 
   return (
     <Flex
@@ -59,33 +73,13 @@ const LandingPage = () => {
                   <Input type="email" placeholder="email address" />
                 </InputGroup>
               </FormControl>
-              <FormControl>
-                <InputGroup>
-                  <InputLeftElement
-                    pointerEvents="none"
-                    color="gray.300"
-                    children={<CFaLock color="gray.300" />}
-                  />
-                  <Input
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder="Password"
-                  />
-                  <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm" onClick={handleShowClick}>
-                      {showPassword ? 'Hide' : 'Show'}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-                <FormHelperText textAlign="right">
-                  <Link>forgot password?</Link>
-                </FormHelperText>
-              </FormControl>
               <Button
                 borderRadius={0}
                 type="submit"
                 variant="solid"
                 colorScheme="teal"
                 width="full"
+                onClick={(e) => register(e)}
               >
                 Login
               </Button>
@@ -93,12 +87,6 @@ const LandingPage = () => {
           </form>
         </Box>
       </Stack>
-      <Box>
-        New to us?{' '}
-        <Link color="teal.500" href="#">
-          Sign Up
-        </Link>
-      </Box>
     </Flex>
   );
 };
