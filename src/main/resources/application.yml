@@ -1,0 +1,63 @@
+server:
+  port: 9191
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    registerWithEureka: true
+    fetchRegistry: true
+    instance:
+      preferIpAddress: true
+      hostname: localhost
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
+          gateway.route.RouteDefinitionLocator: INFO
+    root: INFO
+app:
+  eureka-server: localhost
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: CANTEEN-SERVICE
+          uri: lb://CANTEEN-SERVICE
+          predicates:
+            - Path=/api/canteen/**
+        - id: feedback-service
+          uri: lb://FEEDBACK-SERVICE
+          predicates:
+            - Path=/api/feedback/**
+        - id: MESS-MENU-SERVICE
+          uri: lb://MESS-MENU-SERVICE
+          predicates:
+            - Path=/api/days/**
+        - id: SERVICE-REQUEST
+          uri: lb://SERVICE-REQUEST
+          predicates:
+            - Path=/api/service-requests/**
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/users/**
+        - id: PARSER
+          uri: lb://PARSER
+          predicates:
+            - Path=/api/parse/**
+    default-filters:
+      - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin, RETAIN_UNIQUE
+    globalcors:
+        corsConfigurations:
+          "[/**]":
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
