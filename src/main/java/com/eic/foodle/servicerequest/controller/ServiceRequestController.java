@@ -18,7 +18,7 @@ public class ServiceRequestController {
     }
 
     @PostMapping
-    public ServiceRequest createServiceRequest(@RequestBody ServiceRequest serviceRequest) {
+    public ServiceRequest createServiceRequest(@ModelAttribute ServiceRequest serviceRequest) {
         return service.createServiceRequest(serviceRequest);
     }
 
