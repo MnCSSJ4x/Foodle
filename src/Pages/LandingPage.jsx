@@ -26,8 +26,8 @@ const LandingPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const router = useNavigate();
-  
-  const register = async (event) => {
+
+  const register = async event => {
     event.preventDefault();
     try {
       const response = await axios.get('http://localhost:9191/api/users');
@@ -35,7 +35,7 @@ const LandingPage = () => {
     } catch (error) {
       console.error('Error fetching users:', error);
     }
-    router("/home");
+    router('/home');
     window.location.reload();
   };
 
@@ -54,8 +54,8 @@ const LandingPage = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Avatar bg="teal.500" />
-        <Heading color="teal.400">Welcome</Heading>
+        <Avatar bg="black" />
+        <Heading color="black">Welcome</Heading>
         <Box minW={{ base: '90%', md: '468px' }}>
           <form>
             <Stack
@@ -77,9 +77,9 @@ const LandingPage = () => {
                 borderRadius={0}
                 type="submit"
                 variant="solid"
-                colorScheme="teal"
+                colorScheme="gray"
                 width="full"
-                onClick={(e) => register(e)}
+                onClick={e => register(e)}
               >
                 Login
               </Button>
