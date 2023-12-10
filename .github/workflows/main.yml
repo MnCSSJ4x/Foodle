@@ -28,7 +28,7 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build -t monjoychoudhury29/foodle-mess-menu:latest .
-          docker push your-dockerhub-username/foodle-mess-menu:latest
+          docker push monjoychoudhury29/foodle-mess-menu:latest
 
         env:
           DOCKER_BUILDKIT: 1
