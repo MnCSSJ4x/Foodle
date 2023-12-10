@@ -26,17 +26,30 @@ const LandingPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const router = useNavigate();
+  const [email, setEmail] = useState('');
 
+  const handleEmailChange = e => {
+    // Capture the value from the input field
+    const newText = e.target.value;
+    setEmail(newText);
+  };
   const register = async event => {
     event.preventDefault();
     try {
-      const response = await axios.get('http://localhost:9191/api/users');
-      console.log(response);
+      const response = await axios.get(
+        'http://localhost:9191/api/users/' + email
+      );
+      let userRole = response['data']['role'];
+      let userEmail = response['data']['emailID'];
+      console.log(userRole);
+      if (userRole === 'admin') {
+        router('/admin', { state: { role: userRole, email: userEmail } });
+      } else {
+        router('/home', { state: { role: userRole, email: userEmail } });
+      }
     } catch (error) {
       console.error('Error fetching users:', error);
     }
-    router('/home');
-    window.location.reload();
   };
 
   return (
@@ -70,7 +83,12 @@ const LandingPage = () => {
                     pointerEvents="none"
                     children={<CFaUserAlt color="gray.300" />}
                   />
-                  <Input type="email" placeholder="email address" />
+                  <Input
+                    type="email"
+                    placeholder="email address"
+                    value={email}
+                    onChange={handleEmailChange}
+                  />
                 </InputGroup>
               </FormControl>
               <Button

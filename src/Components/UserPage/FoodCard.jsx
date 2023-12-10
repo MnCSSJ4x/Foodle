@@ -1,6 +1,6 @@
 import { VStack } from '@chakra-ui/react';
 import React from 'react';
-import TemplateImage from '../Assets/template-image.png';
+import TemplateImage from '../../Assets/template-image.png';
 import {
   Card,
   CardHeader,

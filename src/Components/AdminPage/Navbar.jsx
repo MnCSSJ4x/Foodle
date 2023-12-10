@@ -22,7 +22,7 @@ const Navbar = ({ changeTab }) => {
     >
       <Box>
         <Link href="/" fontSize="xl" fontWeight="bold">
-          IIITB Mess Management System
+          IIITB Mess Management System - Admin
         </Link>
       </Box>
 
@@ -33,41 +33,17 @@ const Navbar = ({ changeTab }) => {
         align="center"
         direction="column"
       >
-        <Button
-          colorScheme="whiteAlpha"
-          variant="solid"
-          onClick={() => {
-            changeTab('first');
-          }}
-        >
-          View Mess Menu
+        <Button colorScheme="whiteAlpha" variant="solid">
+          View/Edit Mess Menu
         </Button>
-        <Button
-          colorScheme="whiteAlpha"
-          variant="solid"
-          onClick={() => {
-            changeTab('second');
-          }}
-        >
-          Canteen Menu
+        <Button colorScheme="whiteAlpha" variant="solid">
+          View/Edit Canteen Menu
         </Button>
-        <Button
-          colorScheme="whiteAlpha"
-          variant="solid"
-          onClick={() => {
-            changeTab('third');
-          }}
-        >
-          Provide Feedback
+        <Button colorScheme="whiteAlpha" variant="solid">
+          View Feedbacks
         </Button>
-        <Button
-          colorScheme="whiteAlpha"
-          variant="solid"
-          onClick={() => {
-            changeTab('fourth');
-          }}
-        >
-          Raise a request
+        <Button colorScheme="whiteAlpha" variant="solid">
+          Resolve Requests
         </Button>
       </HStack>
 
@@ -75,16 +51,16 @@ const Navbar = ({ changeTab }) => {
       <Box display={{ base: 'flex', md: 'none' }} spacing={4}>
         <VStack>
           <Button colorScheme="whiteAlpha" size="md">
-            View Mess Menu
+            View/Edit Mess Menu
           </Button>
           <Button colorScheme="whiteAlpha" size="md">
-            Canteen Menu
+            View/Edit Canteen Menu
           </Button>
           <Button colorScheme="whiteAlpha" size="md">
-            Provide Feedback
+            View Feedbacks
           </Button>
           <Button colorScheme="whiteAlpha" size="md">
-            Raise a request
+            Resolve Requests
           </Button>
         </VStack>
       </Box>

@@ -1,11 +1,19 @@
 import React from 'react';
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import {
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Container,
+  Box,
+} from '@chakra-ui/react';
 import TimeCard from './TimeCard';
 
 const MessMenuTab = () => {
   const fetchMenu = async () => {};
   return (
-    <div>
+    <Box>
       <Tabs>
         <TabList>
           <Tab>Monday</Tab>
@@ -41,7 +49,7 @@ const MessMenuTab = () => {
           </TabPanel>
         </TabPanels>
       </Tabs>
-    </div>
+    </Box>
   );
 };
 
