@@ -33,16 +33,40 @@ const Navbar = ({ changeTab }) => {
         align="center"
         direction="column"
       >
-        <Button colorScheme="whiteAlpha" variant="solid">
+        <Button
+          colorScheme="whiteAlpha"
+          variant="solid"
+          onClick={() => {
+            changeTab('first');
+          }}
+        >
           View/Edit Mess Menu
         </Button>
-        <Button colorScheme="whiteAlpha" variant="solid">
+        <Button
+          colorScheme="whiteAlpha"
+          variant="solid"
+          onClick={() => {
+            changeTab('second');
+          }}
+        >
           View/Edit Canteen Menu
         </Button>
-        <Button colorScheme="whiteAlpha" variant="solid">
+        <Button
+          colorScheme="whiteAlpha"
+          variant="solid"
+          onClick={() => {
+            changeTab('third');
+          }}
+        >
           View Feedbacks
         </Button>
-        <Button colorScheme="whiteAlpha" variant="solid">
+        <Button
+          colorScheme="whiteAlpha"
+          variant="solid"
+          onClick={() => {
+            changeTab('fourth');
+          }}
+        >
           Resolve Requests
         </Button>
       </HStack>
@@ -50,16 +74,40 @@ const Navbar = ({ changeTab }) => {
       {/* Mobile Menu Button */}
       <Box display={{ base: 'flex', md: 'none' }} spacing={4}>
         <VStack>
-          <Button colorScheme="whiteAlpha" size="md">
+          <Button
+            colorScheme="whiteAlpha"
+            size="md"
+            onClick={() => {
+              changeTab('first');
+            }}
+          >
             View/Edit Mess Menu
           </Button>
-          <Button colorScheme="whiteAlpha" size="md">
+          <Button
+            colorScheme="whiteAlpha"
+            size="md"
+            onClick={() => {
+              changeTab('second');
+            }}
+          >
             View/Edit Canteen Menu
           </Button>
-          <Button colorScheme="whiteAlpha" size="md">
+          <Button
+            colorScheme="whiteAlpha"
+            size="md"
+            onClick={() => {
+              changeTab('third');
+            }}
+          >
             View Feedbacks
           </Button>
-          <Button colorScheme="whiteAlpha" size="md">
+          <Button
+            colorScheme="whiteAlpha"
+            size="md"
+            onClick={() => {
+              changeTab('fourth');
+            }}
+          >
             Resolve Requests
           </Button>
         </VStack>
