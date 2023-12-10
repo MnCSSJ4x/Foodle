@@ -24,7 +24,7 @@ public class FeedbackController {
     }
 
     @PostMapping
-    public Feedback saveFeedback(@RequestBody Feedback feedback) {
+    public Feedback saveFeedback(@ModelAttribute Feedback feedback) {
         return service.saveFeedback(feedback);
     }
 
