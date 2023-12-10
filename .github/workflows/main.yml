@@ -3,7 +3,7 @@ name: Build and Publish - Canteen Service
 on:
   push:
     branches:
-      - canteen-service
+      - canteen-menu-service
 
 jobs:
   build-and-publish:
