@@ -10,12 +10,20 @@ import {
   Button,
   VStack,
   Box,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  CloseButton,
 } from '@chakra-ui/react';
-const FeedbackForm = () => {
+import axios from 'axios';
+const FeedbackForm = ({ emailId }) => {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('dummy@example.com');
+  const [email, setEmail] = useState(emailId);
   const [feedback, setFeedback] = useState('');
   const [images, setImages] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(null);
 
   const handleImageChange = e => {
     // Handle file uploads
@@ -24,12 +32,39 @@ const FeedbackForm = () => {
     setImages(imageArray);
   };
 
-  const handleSubmit = () => {
-    // Handle form submission
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Feedback:', feedback);
-    console.log('Images:', images);
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('emailID', email);
+      formData.append('FeedbackText', feedback);
+      formData.append('FeedbackImage', images);
+
+      await axios.post('http://localhost:9191/api/feedback', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      // Set success message
+      setSubmitSuccess(true);
+      setName('');
+      setEmail('');
+      setFeedback('');
+      setImages([]);
+    } catch (error) {
+      // Set error message
+      setSubmitSuccess(false);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const closeAlert = () => {
+    setSubmitSuccess(null);
   };
 
   return (
@@ -81,6 +116,25 @@ const FeedbackForm = () => {
             ))}
           </ul>
         </Box>
+      )}
+      {submitSuccess !== null && (
+        <Alert status={submitSuccess ? 'success' : 'error'} mt={4}>
+          <AlertIcon />
+          <VStack spacing={1} align="start">
+            <AlertTitle>{submitSuccess ? 'Success!' : 'Error!'}</AlertTitle>
+            <AlertDescription>
+              {submitSuccess
+                ? 'Feedback submitted successfully!'
+                : 'Failed to submit feedback. Please try again.'}
+            </AlertDescription>
+          </VStack>
+          <CloseButton
+            position="absolute"
+            right="8px"
+            top="8px"
+            onClick={closeAlert}
+          />
+        </Alert>
       )}
     </Container>
   );

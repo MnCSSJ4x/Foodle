@@ -10,7 +10,7 @@ const UserPage = () => {
   return (
     <VStack display={{ base: 'none', md: 'flex' }} spacing={4} align="stretch">
       <Navbar changeTab={setbtnClicked} />
-      <ViewTabs tab={btnClicked} />
+      <ViewTabs tab={btnClicked} emailId={email} />
     </VStack>
   );
 };

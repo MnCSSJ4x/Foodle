@@ -6,7 +6,7 @@ import FeedbackForm from './FeedbackForm';
 import ServiceForm from './ServiceForm';
 //For handling what kind of tab, is it for Mess, is it for canteen, is it for some service request. Based on navbar button click
 
-const ViewTabs = ({ tab }) => {
+const ViewTabs = ({ tab, emailId }) => {
   let componentToRender;
 
   switch (tab) {
@@ -17,10 +17,10 @@ const ViewTabs = ({ tab }) => {
       componentToRender = <CanteenMenuTab />;
       break;
     case 'third':
-      componentToRender = <FeedbackForm />;
+      componentToRender = <FeedbackForm emailId={emailId} />;
       break;
     case 'fourth':
-      componentToRender = <ServiceForm />;
+      componentToRender = <ServiceForm emailId={emailId} />;
       break;
     default:
       // Handle a default case or render a default component

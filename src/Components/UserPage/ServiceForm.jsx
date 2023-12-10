@@ -10,24 +10,69 @@ import {
   VStack,
   Box,
   Text,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  CloseButton,
 } from '@chakra-ui/react';
-
-const ServiceForm = () => {
+import axios from 'axios';
+const ServiceForm = ({ emailId }) => {
   const [requestTitle, setRequestTitle] = useState('');
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('dummy@example.com');
+  const [email, setEmail] = useState(emailId);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [additionalInfo, setAdditionalInfo] = useState('');
-  const [comments, setComments] = useState('');
+  const [status, setStatus] = useState('active');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(null);
 
-  const handleSubmit = () => {
-    // Handle form submission
-    console.log('Request Title:', requestTitle);
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Phone Number:', phoneNumber);
-    console.log('Additional Information:', additionalInfo);
-    console.log('Comments:', comments);
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('requestType', requestTitle);
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('phoneNumber', phoneNumber);
+      formData.append('additionalInfo', additionalInfo);
+      formData.append('resolved', status);
+
+      const response = await axios.post(
+        'http://localhost:9191/api/service-requests',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        // Set success message
+        setSubmitSuccess(true);
+
+        // Reset form state
+        setRequestTitle('');
+        setName('');
+        setEmail('');
+        setPhoneNumber('');
+        setAdditionalInfo('');
+      } else {
+        throw new Error('Failed to submit request');
+      }
+    } catch (error) {
+      // Set error message
+      setSubmitSuccess(false);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const closeAlert = () => {
+    setSubmitSuccess(null);
   };
 
   return (
@@ -85,19 +130,29 @@ const ServiceForm = () => {
           />
         </FormControl>
 
-        <FormControl id="comments">
-          <FormLabel>Any Comments</FormLabel>
-          <Textarea
-            placeholder="Write your comments here..."
-            value={comments}
-            onChange={e => setComments(e.target.value)}
-          />
-        </FormControl>
-
         <Button colorScheme="blackAlpha" onClick={handleSubmit}>
           Submit
         </Button>
       </VStack>
+      {submitSuccess !== null && (
+        <Alert status={submitSuccess ? 'success' : 'error'} mt={4}>
+          <AlertIcon />
+          <VStack spacing={1} align="start">
+            <AlertTitle>{submitSuccess ? 'Success!' : 'Error!'}</AlertTitle>
+            <AlertDescription>
+              {submitSuccess
+                ? 'Request submitted successfully!'
+                : 'Failed to submit request. Please try again.'}
+            </AlertDescription>
+          </VStack>
+          <CloseButton
+            position="absolute"
+            right="8px"
+            top="8px"
+            onClick={closeAlert}
+          />
+        </Alert>
+      )}
     </Container>
   );
 };
