@@ -1,11 +1,11 @@
-version: "3"
+version: "3.6"
 
 services:
   mongodb:
     image: mongo
     container_name: mongodb-container
     ports:
-      - 8094:27017
+      - 27017:27017
     volumes:
       - mongo:/data
     environment:
