@@ -12,7 +12,6 @@ spring:
 
 server:
   port: 8086
-  address: 0.0.0.0
 eureka:
   client:
     registerWithEureka: true
