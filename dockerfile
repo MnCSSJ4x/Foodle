@@ -1,5 +1,9 @@
-FROM nginx:latest
-RUN rm /etc/nginx/conf.d/default.conf
-COPY frontend.conf /etc/nginx/conf.d/nginx.conf
-COPY build/ /usr/share/nginx/html
+FROM node:17-alpine3.12
+WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json .
+COPY package-lock.json .
+RUN npm install # -g npm@8.9.0
+COPY . .
 EXPOSE 3000
+CMD ["npm", "start"]
