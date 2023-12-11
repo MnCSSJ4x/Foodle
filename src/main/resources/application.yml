@@ -3,7 +3,6 @@ spring:
     name: USER-SERVICE
   data:
     mongodb:
-      uri: mongodb://monjoy:monjoy@localhost:8094/?authMechanism=DEFAULT&authSource=admin
       username: monjoy
       password: monjoy
       host: mongodb
