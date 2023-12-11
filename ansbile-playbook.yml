@@ -6,14 +6,21 @@
       copy:
         src: ./docker-compose.yml
         dest: ./
+    - name: Copy Database Docker Compose file from host machine to remote host
+      copy:
+        src: ./database-docker-compose.yml
+        dest: ./
 
-    - name: Pull the Docker images specifed in docker-compose
-      shell:
-        cmd: docker compose pull
-        chdir: ./
+    # - name: Pull the Docker images specifed in docker-compose
+    #   shell:
+    #     cmd: docker compose pull
+    #     chdir: ./
 
-    - name: Run the pulled Docker images in detached mode
-      command: docker compose up -d --build
+    - name: Run the pulled Docker images in detached mode - DATABASE
+      command: docker compose -f database-docker-compose.yml up  -d
+
+    - name: Run the pulled Docker images in detached mode - MICROSERVICE
+      command: docker compose -f docker-compose.yml up  -d
 
     - name: Prune unwanted images
       command: docker image prune --force

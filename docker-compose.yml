@@ -8,6 +8,7 @@ services:
     pull_policy: always
     networks:
       - my-network
+    container_name: frontend
   discovery-service:
     image: monjoychoudhury29/foodle-service-discovery:latest
     ports:
@@ -23,6 +24,7 @@ services:
       - "9191:9191"
     depends_on:
       - discovery-service
+    container_name: api-gateway
     pull_policy: always
     networks:
       - my-network
@@ -33,6 +35,7 @@ services:
       - "8084:8084"
     depends_on:
       - discovery-service
+    container_name: canteen-service
     pull_policy: always
     networks:
       - my-network
@@ -43,6 +46,7 @@ services:
       - "8082:8082"
     depends_on:
       - discovery-service
+    container_name: feedback-service
     pull_policy: always
     networks:
       - my-network
@@ -54,6 +58,7 @@ services:
     depends_on:
       - discovery-service
     pull_policy: always
+    container_name: mess-menu-service
     networks:
       - my-network
 
@@ -64,6 +69,7 @@ services:
     depends_on:
       - discovery-service
     pull_policy: always
+    container_name: user-service
     networks:
       - my-network
 
@@ -74,6 +80,7 @@ services:
     depends_on:
       - discovery-service
     pull_policy: always
+    container_name: service-request
     networks:
       - my-network
 
