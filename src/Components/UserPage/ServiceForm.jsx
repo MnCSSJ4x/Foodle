@@ -17,6 +17,7 @@ import {
   CloseButton,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import BACKEND_URL from '../../constant';
 const ServiceForm = ({ emailId }) => {
   const [requestTitle, setRequestTitle] = useState('');
   const [name, setName] = useState('');
@@ -41,7 +42,7 @@ const ServiceForm = ({ emailId }) => {
       formData.append('resolved', status);
 
       const response = await axios.post(
-        'http://localhost:9191/api/service-requests',
+        BACKEND_URL + 'api/service-requests',
         formData,
         {
           headers: {

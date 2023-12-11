@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Box, VStack, Text, Button, SimpleGrid } from '@chakra-ui/react';
 import axios from 'axios';
+import BACKEND_URL from '../../constant';
 const ViewRequest = () => {
   const [serviceRequests, setServiceRequests] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          'http://localhost:9191/api/service-requests'
-        );
+        const response = await axios.get(BACKEND_URL + 'api/service-requests');
 
         setServiceRequests(response.data);
       } catch (error) {
@@ -23,7 +22,7 @@ const ViewRequest = () => {
   const handleResolve = async requestId => {
     try {
       await axios.patch(
-        `http://localhost:9191/api/service-requests/${requestId}?status=resolved`
+        `${BACKEND_URL}api/service-requests/${requestId}?status=resolved`
       );
       // Assuming your API has an endpoint for updating the status to "resolved"
       // You may need to adjust the API endpoint based on your backend implementation

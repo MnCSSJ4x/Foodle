@@ -17,6 +17,7 @@ import {
   CloseButton,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import BACKEND_URL from '../../constant';
 const FeedbackForm = ({ emailId }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState(emailId);
@@ -43,7 +44,7 @@ const FeedbackForm = ({ emailId }) => {
       formData.append('FeedbackText', feedback);
       formData.append('FeedbackImage', images);
 
-      await axios.post('http://localhost:9191/api/feedback', formData, {
+      await axios.post(BACKEND_URL + 'api/feedback', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

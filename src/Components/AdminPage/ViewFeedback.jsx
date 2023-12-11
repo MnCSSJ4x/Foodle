@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Box, VStack, Text, Image, SimpleGrid } from '@chakra-ui/react';
 import axios from 'axios';
 import template_image from '../../Assets/template-image.png';
+import BACKEND_URL from '../../constant';
 const ViewFeedback = () => {
   const [feedbacks, setFeedbacks] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:9191/api/feedback');
+        const response = await axios.get(BACKEND_URL+'api/feedback');
         setFeedbacks(response.data);
       } catch (error) {
         console.error('Error fetching feedback data:', error);

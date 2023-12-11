@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { FaUserAlt, FaLock } from 'react-icons/fa';
 import axios from 'axios';
-
+import BACKEND_URL from '../constant';
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 const LandingPage = () => {
@@ -36,9 +36,8 @@ const LandingPage = () => {
   const register = async event => {
     event.preventDefault();
     try {
-      const response = await axios.get(
-        'http://localhost:9191/api/users/' + email
-      );
+      console.log(BACKEND_URL);
+      const response = await axios.get(BACKEND_URL + 'api/users/' + email);
       let userRole = response['data']['role'];
       let userEmail = response['data']['emailID'];
       console.log(userRole);
