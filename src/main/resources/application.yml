@@ -4,12 +4,12 @@ spring:
   data:
     mongodb:
       uri: mongodb://monjoy:monjoy@localhost:8094/?authMechanism=DEFAULT&authSource=admin
-      # username: monjoy
-      # password: monjoy
-      # host: mongodb
-      # port: 8094
-      # database: users
-      # authentication-database: admin
+      username: monjoy
+      password: monjoy
+      host: mongodb
+      port: 8094
+      database: users
+      authentication-database: admin
 
 server:
   port: 8086
