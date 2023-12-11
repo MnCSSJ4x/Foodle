@@ -1,0 +1,108 @@
+version: "3"
+
+services:
+  # mongodb:
+  #   image: mongo
+  #   container_name: mongodb
+  #   ports:
+  #     - 8094:27017
+  #   volumes:
+  #     - mongo:/data
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=monjoy
+  #     - MONGO_INITDB_ROOT_PASSWORD=monjoy
+  # mongo-express:
+  #   image: mongo-express
+  #   container_name: mongo_express_foodle
+  #   ports:
+  #     - 8081:8081
+  #   environment:
+  #     - ME_CONFIG_MONGODB_ADMINUSERNAME=monjoy
+  #     - ME_CONFIG_MONGODB_ADMINPASSWORD=monjoy
+  #     - ME_CONFIG_MONGODB_SERVER=mongodb
+  #   depends_on:
+  #     - mongodb
+  #   networks:
+  #     - my-network
+
+  # discovery-service:
+  #   image: monjoychoudhury29/foodle-service-discovery:latest
+  #   ports:
+  #     - "8761:8761"
+  #   container_name: discovery-service
+  #   pull_policy: always
+  #   networks:
+  #     - my-network
+
+  # api-gateway:
+  #   image: monjoychoudhury29/foodle-api-gateway:latest
+  #   ports:
+  #     - "9191:9191"
+  #   depends_on:
+  #     - mongodb
+  #     - discovery-service
+      
+  #   pull_policy: always
+  #   networks:
+  #     - my-network
+
+  # canteen-service:
+  #   image: monjoychoudhury29/foodle-canteen-service:latest
+  #   ports:
+  #     - "8084:8084"
+  #   depends_on:
+  #     - discovery-service
+  #     - mongodb
+  #   pull_policy: always
+  #   networks:
+  #     - my-network
+
+  # feedback-service:
+  #   image: monjoychoudhury29/foodle-feedback-service:latest
+  #   ports:
+  #     - "8082:8082"
+  #   depends_on:
+  #     - discovery-service
+  #     - mongodb
+  #   pull_policy: always
+  #   networks:
+  #     - my-network
+
+  # mess-menu-service:
+  #   image: monjoychoudhury29/foodle-mess-menu:latest
+  #   ports:
+  #     - "8085:8085"
+  #   depends_on:
+  #     - discovery-service
+  #     - mongodb
+  #   pull_policy: always
+  #   networks:
+  #     - my-network
+
+  user-service:
+    image: monjoychoudhury29/foodle-user-service:latest
+    ports:
+      - "8086:8086"
+    # depends_on:
+    #   - mongodb
+      # - discovery-service
+    pull_policy: always
+    networks:
+      - my-network
+
+  # service-request:
+  #   image: monjoychoudhury29/foodle-service-request:latest
+  #   ports:
+  #     - "8083:8083"  
+  #   depends_on:
+  #     - discovery-service
+  #     - mongodb
+  #   pull_policy: always
+  #   networks:
+  #     - my-network
+
+# volumes:
+#   mongo: {}
+networks:
+  my-network:
+    driver: bridge
