@@ -5,7 +5,7 @@ spring:
     mongodb:
       username: monjoy
       password: monjoy
-      host: mongodb
+      host: mongodb-container
       port: 8094
       database: users
       authentication-database: admin
