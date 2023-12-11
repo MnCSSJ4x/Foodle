@@ -3,12 +3,12 @@ spring:
     name: USER-SERVICE
   data:
     mongodb:
-      username: monjoy
-      password: monjoy
+      # username: monjoy
+      # password: monjoy
       host: mongodb-container
       port: 8094
       database: users
-      authentication-database: admin
+      # authentication-database: admin
 
 server:
   port: 8086
