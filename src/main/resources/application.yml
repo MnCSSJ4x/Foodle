@@ -5,8 +5,8 @@ spring:
     mongodb:
       username: monjoy
       password: monjoy
-      host: localhost
-      port: 8094
+      host: mongodb-container
+      port: 27017
       database: mess-menu
       authentication-database: admin
 
@@ -20,4 +20,5 @@ eureka:
       # defaultZone: http://localhost:8761/eureka/
       defaultZone: http://discovery-service:8761/eureka/
   instance:
-    hostname: localhost
+    # hostname: localhost
+    preferIpAddress: true
