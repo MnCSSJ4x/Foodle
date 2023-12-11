@@ -9,7 +9,7 @@ eureka:
     fetchRegistry: true
     instance:
       preferIpAddress: true
-      hostname: localhost
+      # hostname: localhost
 logging:
   level:
     org:
