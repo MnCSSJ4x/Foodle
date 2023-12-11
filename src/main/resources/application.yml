@@ -5,8 +5,8 @@ spring:
     mongodb:
       username: monjoy
       password: monjoy
-      host: localhost
-      port: 8094
+      host: mongodb-container
+      port: 27017
       database: service-request
       authentication-database: admin
 server:
@@ -19,6 +19,7 @@ eureka:
       # defaultZone: http://localhost:8761/eureka/
       defaultZone: http://discovery-service:8761/eureka/
   instance:
-    hostname: localhost
+    # hostname: localhost
+    preferIpAddress: true
 logging.level.org.springframework.web: DEBUG
 logging.level.com.eic.foodle.parser: DEBUG
