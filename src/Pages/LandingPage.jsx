@@ -20,6 +20,8 @@ import {
 import { FaUserAlt, FaLock } from 'react-icons/fa';
 import axios from 'axios';
 import BACKEND_URL from '../constant';
+
+
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 const LandingPage = () => {
@@ -32,6 +34,7 @@ const LandingPage = () => {
     // Capture the value from the input field
     const newText = e.target.value;
     setEmail(newText);
+    // console.log(email);
   };
   const register = async event => {
     event.preventDefault();

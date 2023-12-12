@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from '../Components/AdminPage/Navbar';
 import ViewTabs from '../Components/AdminPage/ViewTabs';
+
 const AdminPage = () => {
   const [btnClicked, setbtnClicked] = useState('None');
   const location = useLocation();
