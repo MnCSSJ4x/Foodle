@@ -10,6 +10,7 @@ public class MessMenuServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MessMenuServiceApplication.class, args);
+//		comment added
 	}
 
 }
