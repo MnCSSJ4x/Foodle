@@ -15,7 +15,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class CanteenserviceApplication {
 	private static final Logger LOG = LogManager.getLogger(CanteenserviceApplication.class);
 	public static void main(String[] args) {
-		LOG.debug("Started canteen service");
+		LOG.info("Started canteen service");
 		SpringApplication.run(CanteenserviceApplication.class, args);
 	}
 

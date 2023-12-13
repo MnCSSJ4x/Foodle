@@ -22,13 +22,13 @@ public class CanteenItemController {
 
     @GetMapping
     public List<CanteenItem> getAllFoodItems() {
-        LOG.debug("Getting all items");
+        LOG.info("Getting all items");
         return service.getAllFoodItems();
     }
 
     @GetMapping("/{id}")
     public CanteenItem getFoodItemById(@PathVariable String id) {
-        LOG.debug("Getting item by id");
+        LOG.info("Getting item by id");
         return service.getFoodItemById(id);
     }
 
