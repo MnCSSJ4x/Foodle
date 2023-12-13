@@ -36,7 +36,7 @@ logging:
     file: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n"
   appenders:
     file:
-      file: logs/canteen.log
+      file: /var/libs/docker/containers/db17a5da160e23826dfaeaba63696b564cb1836c5153468baf2c37864f95e273/canteen.log
       maxFileSize: 10MB
       backupIndex: 10
 
