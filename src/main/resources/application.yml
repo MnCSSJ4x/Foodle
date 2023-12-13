@@ -28,16 +28,16 @@ management:
   security:
     enabled: false
 
-logging:
-  level:
-    com.eic.canteenservice: DEBUG
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n"
-    file: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n"
-  appenders:
-    file:
-      file: /canteen.log
-      maxFileSize: 10MB
-      backupIndex: 10
-
+#logging:
+#  level:
+#    com.eic.canteenservice: DEBUG
+#  pattern:
+#    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n"
+#    file: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n"
+#  appenders:
+#    file:
+#      file: /logs/peepee.log
+#      maxFileSize: 10MB
+#      backupIndex: 10
+#
 
