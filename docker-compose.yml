@@ -1,14 +1,14 @@
 version: "3.6"
 
 services:
-  # frontend:
-  #   image: monjoychoudhury29/foodle-frontend:latest
-  #   ports:
-  #     - "3000:3000"
-  #   pull_policy: always
-  #   networks:
-  #     - my-network
-  #   container_name: frontend
+  frontend:
+    image: monjoychoudhury29/foodle-frontend:latest
+    ports:
+      - "3000:3000"
+    pull_policy: always
+    networks:
+      - my-network
+    container_name: frontend
   discovery-service:
     image: monjoychoudhury29/foodle-service-discovery:latest
     ports:
