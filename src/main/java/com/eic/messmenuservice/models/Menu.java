@@ -11,5 +11,5 @@ import java.util.List;
 @Data
 public class Menu {
     private List<FoodItem> foodItems;
-    private String type;
+    private int type;
 }
