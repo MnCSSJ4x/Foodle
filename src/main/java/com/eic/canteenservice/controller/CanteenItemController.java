@@ -23,12 +23,18 @@ public class CanteenItemController {
     @GetMapping
     public List<CanteenItem> getAllFoodItems() {
         LOG.info("Getting all items");
+        if(service.getAllFoodItems().isEmpty()) {
+            LOG.error("No items found in menu");
+        }
         return service.getAllFoodItems();
     }
 
     @GetMapping("/{id}")
     public CanteenItem getFoodItemById(@PathVariable String id) {
         LOG.info("Getting item by id");
+        if(service.getFoodItemById(id) == null) {
+            LOG.error("No item by id found");
+        }
         return service.getFoodItemById(id);
     }
 
@@ -40,6 +46,7 @@ public class CanteenItemController {
 
     @DeleteMapping("/{id}")
     public void deleteFoodItem(@PathVariable String id) {
+        LOG.warn("Deleting a fooditem");
         service.deleteFoodItem(id);
     }
 
