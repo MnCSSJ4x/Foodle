@@ -23,12 +23,14 @@ import template_image from '../../Assets/template-image.png';
 
 const ViewCanteenMenu = () => {
   const [menuItems, setMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(BACKEND_URL+'api/canteen');
         setMenuItems(response.data);
+        setLoading(false);
         console.log(response.data)
       } catch (error) {
         console.error('Error fetching feedback data:', error);
@@ -79,65 +81,70 @@ const ViewCanteenMenu = () => {
 
   return ( 
     <div>
-      <Button onClick={onOpen}>Add Item to Menu</Button>
+      {loading && <div>Loading</div>}
+      {!loading && (
+        <div>
+        <Button onClick={onOpen}>Add Item to Menu</Button>
 
-      <Modal initialFocusRef={initialRef}
-          finalFocusRef={finalRef}
-          isOpen={isOpen}
-          onClose={onClose}
-        >
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Add Item to Menu</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody pb={6}>
-              <FormControl>
-                <FormLabel>Item Name</FormLabel>
-                <Input value={name} onChange={e => setName(e.target.value)} placeholder='Item Name' />
-              </FormControl>
-              <FormControl>
-                <FormLabel>Item Description</FormLabel>
-                <Input value={description} onChange={e => setDescription(e.target.value)} placeholder='Description' />
-              </FormControl>
-              <FormControl>
-                <FormLabel>Price</FormLabel>
-                <Input value={price} onChange={e => setPrice(Number(e.target.value))} />
-              </FormControl>
-            </ModalBody>
-
-            <ModalFooter>
-              <Button onClick={handleSubmit} colorScheme='blue' mr={3}>
-                Save
-              </Button>
-              <Button onClick={onClose}>Cancel</Button>
-          </ModalFooter>
-          </ModalContent>
-      </Modal>
-
-      <SimpleGrid columns={6} spacing={4}>
-        {menuItems.map(item => (
-          <Box
-            key={item.id}
-            borderWidth="1px"
-            borderRadius="lg"
-            overflow="hidden"
+        <Modal initialFocusRef={initialRef}
+            finalFocusRef={finalRef}
+            isOpen={isOpen}
+            onClose={onClose}
           >
-            {item.image ? (
-              <Image
-                src={`data:image/png;base64,${item.image}`}
-                alt="Feedback"
-              />
-            ) : (
-              <Image src={template_image} alt="Default" />
-            )}
-            <VStack p={4} align="start">
-              <Text fontWeight="bold">{item.title}</Text>
-              <Text>{item.description}</Text>
-              <Text>{item.price}</Text>
-            </VStack>
-          </Box>
-        ))}
-      </SimpleGrid>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Add Item to Menu</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody pb={6}>
+                <FormControl>
+                  <FormLabel>Item Name</FormLabel>
+                  <Input value={name} onChange={e => setName(e.target.value)} placeholder='Item Name' />
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Item Description</FormLabel>
+                  <Input value={description} onChange={e => setDescription(e.target.value)} placeholder='Description' />
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Price</FormLabel>
+                  <Input value={price} onChange={e => setPrice(Number(e.target.value))} />
+                </FormControl>
+              </ModalBody>
+
+              <ModalFooter>
+                <Button onClick={handleSubmit} colorScheme='blue' mr={3}>
+                  Save
+                </Button>
+                <Button onClick={onClose}>Cancel</Button>
+            </ModalFooter>
+            </ModalContent>
+        </Modal>
+
+        <SimpleGrid columns={6} spacing={4}>
+          {menuItems.map(item => (
+            <Box
+              key={item.id}
+              borderWidth="1px"
+              borderRadius="lg"
+              overflow="hidden"
+            >
+              {item.image ? (
+                <Image
+                  src={`data:image/png;base64,${item.image}`}
+                  alt="Feedback"
+                />
+              ) : (
+                <Image src={template_image} alt="Default" />
+              )}
+              <VStack p={4} align="start">
+                <Text fontWeight="bold">{item.title}</Text>
+                <Text>{item.description}</Text>
+                <Text>{item.price}</Text>
+              </VStack>
+            </Box>
+          ))}
+        </SimpleGrid>
+      </div>
+      )}
     </div>
   )
 }

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 import FoodCard from './FoodCard';
-import { VStack } from '@chakra-ui/react';
+import { VStack, SimpleGrid, Text, Box, Image } from '@chakra-ui/react';
 import BACKEND_URL from '../../constant';
+import template_image from '../../Assets/template-image.png';
+
 const CanteenMenuTab = () => {
   const [canteenData, setCanteenData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,18 +30,40 @@ const CanteenMenuTab = () => {
     <div>
       {loading && <div>Loading</div>}
       {!loading && (
-        <VStack>
+        // <VStack>
+        <SimpleGrid columns={6} spacing={4}>
           {canteenData.map(item => (
-            <FoodCard
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              image={item.image}
-              price={item.price}
-              description={item.description}
-            />
+            // <FoodCard
+            //   key={item.id}
+            //   id={item.id}
+            //   title={item.title}
+            //   image={item.image}
+            //   price={item.price}
+            //   description={item.description}
+            // />
+            <Box
+            key={item.id}
+            borderWidth="1px"
+            borderRadius="lg"
+            overflow="hidden"
+          >
+            {item.image ? (
+              <Image
+                src={`data:image/png;base64,${item.image}`}
+                alt="Feedback"
+              />
+            ) : (
+              <Image src={template_image} alt="Default" />
+            )}
+            <VStack p={4} align="start">
+              <Text fontWeight="bold">{item.title}</Text>
+              <Text>{item.description}</Text>
+              <Text>{item.price}</Text>
+            </VStack>
+          </Box>
           ))}
-        </VStack>
+          </SimpleGrid>
+        // </VStack>
       )}
     </div>
   );

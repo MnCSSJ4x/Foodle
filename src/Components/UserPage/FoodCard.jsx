@@ -15,7 +15,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 const FoodCard = props => {
-  console.log(props);
+  // console.log(props);
   return (
     <div>
       <Card
