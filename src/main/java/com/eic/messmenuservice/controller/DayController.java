@@ -20,8 +20,8 @@ public class DayController {
         return dayService.updateDay(id, updatedDay);
     }
     @GetMapping
-    String test(){
-        return "Hello";
+    public List<Day> getAllDays(){
+        return dayService.getDays();
     }
     @GetMapping("/{id}")
     public Day getDayById(@PathVariable String id) {

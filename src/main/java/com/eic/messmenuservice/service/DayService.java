@@ -22,6 +22,9 @@ public class DayService {
 
         return dayRepository.save(existingDay);
     }
+    public List<Day> getDays() {
+        return dayRepository.findAll();
+    }
     public Day getDayById(String id) {
         return dayRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Day not found with id: " + id));
