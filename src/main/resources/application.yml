@@ -11,6 +11,9 @@ eureka:
       preferIpAddress: true
       # hostname: localhost
 logging:
+  file: 
+    path: /
+    name: log.txt
   level:
     org:
       springframework:
